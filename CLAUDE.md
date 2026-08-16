@@ -297,10 +297,11 @@ Optimized for speed (which is also SEO), low attack surface, auditability, and l
   (hosting under a personal domain ties the guide too tightly to one person). "LivCo" is the
   local shorthand, so the name reads as insider-plain to residents. **Not yet registered as of
   2026-08-16** — confirmed unregistered via PIR RDAP and DNS; register before Phase 0 completes.
-- **Repo visibility: strongly consider public.** A public repo makes the entire edit history and
-  the full dataset auditable by anyone — an unusually strong neutrality/trust signal, and it
-  enables outside contributions and corrections. Trade-off: work-in-progress is visible. On
-  balance, for a civic-trust project, public likely wins. **[DECISION NEEDED]**
+- **Repo visibility: PUBLIC.** `github.com/chrismlarson/livingston-voter-guide`. A public repo
+  makes the entire edit history and the full dataset auditable by anyone — an unusually strong
+  neutrality/trust signal, and it enables outside contributions and corrections. Accepted
+  trade-off: work-in-progress is visible, and this file is visible with it. Unverified drafts
+  and outreach correspondence belong in `/private/` (gitignored) until they are sourced.
 
 ---
 
@@ -414,7 +415,12 @@ Keep this section updated as the project evolves — it is part of the shared me
 - **[DECIDED 2026-08-16]** Domain name: **`livcovoterguide.org`** (§10). Confirmed unregistered
   at the time of the decision; still needs to be registered. Considered and set aside:
   `livingstoncountyvoterguide.org` (also free — contains the exact search phrase, but longer).
-- **[DECISION NEEDED]** Repo public vs. private (recommend public for auditability/trust).
+- **[DECIDED 2026-08-16]** Repo is **public**: `github.com/chrismlarson/livingston-voter-guide`.
+  The edit history is the neutrality evidence, so auditability beat keeping drafts private.
+- **[DECIDED 2026-08-16]** Hosting: **Cloudflare Pages**, not the existing chrislarson.com
+  droplet. Shared-IP linkage is a non-issue given §9 discloses authorship anyway; the real
+  reasons are spike tolerance on election night and a near-zero attack surface. What matters
+  is that the guide is not served from a *visible* personal subdomain or subpath (§10).
 - **[VERIFY]** FEC nonpartisan voter-guide rules + Michigan Campaign Finance Act posture before
   launch (§13).
 - **[OPEN]** Whether to build a first-party candidate questionnaire (sent equally to all
