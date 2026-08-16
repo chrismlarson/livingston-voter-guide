@@ -466,9 +466,23 @@ human decision, because including or excluding either one silently would be the 
   that "everyone got the same email" is checkable rather than asserted. Blocked on email
   (below).
 - **[TODO] Email for `livingstonvoterguide.org`.** Domain registered 2026-08-16 at Namecheap.
-  Needs: inbound (Cloudflare Email Routing, free) plus authenticated outbound (SPF, DKIM,
-  DMARC) before any candidate outreach goes out. Unauthenticated mail from a brand-new civic
-  domain lands in spam or reads as phishing, which is a bad first contact with a campaign.
+  Live DNS as observed 2026-08-16:
+  - `livingstonvoterguide.org` — NS at Namecheap; Namecheap's **default free email
+    forwarding** MX records (`eforward1–5.registrar-servers.com`) and its SPF
+    (`include:spf.efwd.registrar-servers.com`) are already live. No DMARC.
+  - `classtrova.com` — NS at Cloudflare, **Cloudflare Email Routing already in use**
+    (`route1–3.mx.cloudflare.net`, SPF `include:_spf.mx.cloudflare.net`). No DMARC.
+    This is the existing precedent — the same setup works here.
+  - `chrislarson.com` — NS at Namecheap, no MX at all, no DMARC. No mail on that domain.
+  **Sequencing gotcha:** a Cloudflare Pages custom domain on an apex needs the zone on
+  Cloudflare DNS, and moving the nameservers drops Namecheap's forwarding MX. Stand up
+  Cloudflare Email Routing in the same change, or inbound mail breaks silently.
+  **Neither Cloudflare Email Routing nor Namecheap forwarding can send** — both are
+  receive-only, and no outbound provider has ever been configured on any of these domains
+  (classtrova's SMTP config is a local dev stub on `localhost:1025`). Outbound needs an SMTP
+  relay plus SPF/DKIM/DMARC before any candidate outreach goes out. Unauthenticated mail from
+  a brand-new civic domain lands in spam or reads as phishing — a bad first contact with a
+  campaign, and one that is hard to undo.
 
 ---
 
