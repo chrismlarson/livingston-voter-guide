@@ -55,3 +55,8 @@ test('blocks campaign-finance figures with no filing linked (§7)', () => {
   const { stderr } = runValidator('violations');
   assert.match(stderr, /campaign_finance has figures but no source_url/);
 });
+
+test('blocks a third-party rating carried by only some candidates (§2.1, §4)', () => {
+  const { stderr } = runValidator('violations');
+  assert.match(stderr, /rating from "Example Bar Association" is present for some candidates/);
+});

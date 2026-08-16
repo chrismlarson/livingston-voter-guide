@@ -15,7 +15,15 @@ candidate_statement: >
 statement_source: https://example.org/carter
 website: null
 social: []
+# Planted violation: rated by an organization that the opponent's record does not
+# mention at all, so the opponent silently appears to have no credential.
 endorsements: []
+ratings:
+  - rater: Example Bar Association
+    rating: Outstanding
+    source_url: "https://example.org/ratings"
+    date: "2026-07-01"
+    note: null
 campaign_finance:
   total_raised: 25000
   total_spent: null

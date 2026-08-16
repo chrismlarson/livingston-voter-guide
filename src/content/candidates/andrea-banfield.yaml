@@ -47,6 +47,16 @@ social:
 # verified from a primary source yet. Nothing is listed until it is sourced (§7).
 endorsements: []
 
+ratings:
+  - rater: Women Lawyers Association of Michigan
+    rating: Outstanding
+    source_url: "https://womenlawyers.org/about-wlam/candidate-rating/"
+    # WLAM published the rating as "July 2026" with no day given; inventing one would
+    # be false precision (§7).
+    date: null
+    note: >
+      Published July 2026. WLAM evaluates only those candidates who request a rating.
+
 campaign_finance:
   total_raised: null
   total_spent: null

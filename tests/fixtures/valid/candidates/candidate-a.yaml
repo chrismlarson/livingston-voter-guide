@@ -26,6 +26,12 @@ website: https://example.org/candidate-a
 social: []
 endorsements:
   - { endorser: "Example Association", source_url: "https://example.org/endorsement", date: "2026-07-01" }
+ratings:
+  - rater: Example Bar Association
+    rating: Qualified
+    source_url: "https://example.org/ratings"
+    date: "2026-07-01"
+    note: null
 campaign_finance:
   total_raised: null
   total_spent: null

@@ -25,6 +25,12 @@ statement_source: https://example.org/candidate-b
 website: null
 social: []
 endorsements: []
+ratings:
+  - rater: Example Bar Association
+    rating: null
+    source_url: "https://example.org/ratings"
+    date: "2026-07-01"
+    note: "Not rated. The association rates only candidates who request a rating."
 campaign_finance:
   total_raised: null
   total_spent: null

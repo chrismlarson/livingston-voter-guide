@@ -45,6 +45,16 @@ social:
 # verified from a primary source yet. Nothing is listed until it is sourced (§7).
 endorsements: []
 
+ratings:
+  - rater: Women Lawyers Association of Michigan
+    rating: null
+    source_url: "https://womenlawyers.org/about-wlam/candidate-rating/"
+    date: null
+    note: >
+      Not listed among WLAM's rated candidates. WLAM evaluates only those candidates who
+      request a rating, so the absence of a rating does not indicate an unfavorable
+      evaluation.
+
 campaign_finance:
   total_raised: null
   total_spent: null

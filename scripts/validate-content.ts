@@ -151,6 +151,18 @@ for (const c of candidates) {
   if (c.questionnaire.responded && c.questionnaire.responses.length === 0) {
     fail(c._file, 'questionnaire.responded is true but no responses are recorded');
   }
+
+  // An unrated entry without an explanation is worse than no entry at all — a bare
+  // blank next to a rated opponent reads as a failing grade (§4).
+  for (const r of c.ratings) {
+    if (r.rating === null && (r.note === null || r.note.trim() === '')) {
+      fail(
+        c._file,
+        `ratings entry for "${r.rater}" has no rating and no note. An unrated candidate ` +
+          'must carry a neutral explanation of what "not rated" means (§4).',
+      );
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -188,6 +200,24 @@ for (const office of offices) {
         `unequal word budget within this race: ${max} vs ${min} words ` +
           `(ratio ${(max / min).toFixed(2)} > ${WORD_BUDGET_TOLERANCE}). ` +
           'Differential emphasis is the main lever of bias (§2.1, §8).',
+      );
+    }
+  }
+
+  // §2.1: third-party ratings are all-or-nothing within a race. If one candidate is
+  // rated by an organization, every candidate carries an entry for that organization —
+  // otherwise the rated candidate gets a credential and the others get silence, which
+  // is differential emphasis wearing a citation.
+  const allRaters = new Set(field.flatMap((c) => c.ratings.map((r) => r.rater)));
+  for (const rater of allRaters) {
+    const missing = field.filter((c) => !c.ratings.some((r) => r.rater === rater));
+    if (missing.length > 0) {
+      fail(
+        where,
+        `rating from "${rater}" is present for some candidates but missing for ` +
+          `${missing.map((c) => c.ballot_name).join(', ')}. Every candidate in a race ` +
+          'carries an entry for every rater, using rating: null plus a note where ' +
+          'the candidate is unrated (§2.1, §4).',
       );
     }
   }

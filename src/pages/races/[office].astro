@@ -134,6 +134,23 @@ const jsonLd = {
               )}
             </dd>
 
+            {c.ratings.length > 0 && (
+              <>
+                <dt>Bar association ratings</dt>
+                <dd>
+                  <ul>
+                    {c.ratings.map((r) => (
+                      <li>
+                        {r.rater}: {r.rating ?? 'Not rated'}
+                        {r.date && ` (${r.date})`} — <a href={r.source_url}>source</a>
+                        {r.note && <div class="meta">{r.note}</div>}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </>
+            )}
+
             <dt>Campaign finance</dt>
             <dd>
               {c.campaign_finance.source_url ? (

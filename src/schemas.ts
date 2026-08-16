@@ -148,6 +148,28 @@ export const candidateSchema = z.object({
 
   endorsements: z.array(endorsement),
 
+  /**
+   * Third-party qualification ratings (bar associations and similar).
+   *
+   * These are the single most dangerous field in the schema. Most raters are opt-in,
+   * so an absent rating usually means the candidate did not participate — but printed
+   * beside a rated opponent it reads as a bad grade. The validator therefore requires
+   * that if ANY candidate in a race carries an entry from a given rater, EVERY candidate
+   * in that race carries one, with `rating: null` meaning "not rated" and `note`
+   * carrying the neutral explanation of what that does and does not mean (§2.1, §4).
+   */
+  ratings: z.array(
+    z.object({
+      rater: z.string().min(1),
+      /** The rating as the rater published it, or null if this candidate is unrated. */
+      rating: z.string().nullable(),
+      source_url: url,
+      date: isoDate.nullable(),
+      /** Required when rating is null — explains why, so absence is not read as a grade. */
+      note: z.string().nullable(),
+    }),
+  ),
+
   /** Topline only — link the filing, never cherry-pick donors (§6). */
   campaign_finance: z.object({
     total_raised: z.number().nullable(),

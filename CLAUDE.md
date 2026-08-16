@@ -435,22 +435,21 @@ Keep this section updated as the project evolves — it is part of the shared me
 These are §4 judgment calls. Each was deliberately left OUT of the published record pending a
 human decision, because including or excluding either one silently would be the wrong default.
 
-- **[OPEN] WLAM judicial rating.** The Women Lawyers Association of Michigan rated Andrea
-  Banfield "Outstanding" (July 2026). Kristina Lyke does not appear anywhere on WLAM's ratings
-  list, for this or any prior cycle. Publishing "Outstanding" beside one candidate and nothing
-  beside the other is textbook differential emphasis — but suppressing a sourced third-party
-  rating is not neutral either. The blocker is that we do not know *why* Lyke is unlisted:
-  WLAM ratings may require the candidate to participate, in which case "unrated" means
-  "declined or did not submit," not "rated poorly." **Resolve by checking WLAM's rating
-  methodology, then either (a) list both with an explanatory note about what unrated means, or
-  (b) omit ratings entirely for this race.** Do not publish it one-sided.
+- **[DECIDED 2026-08-16] WLAM judicial rating: published for both, symmetrically.** WLAM rated
+  Andrea Banfield "Outstanding" (July 2026); Kristina Lyke is not on WLAM's list. The
+  resolving fact is that **WLAM evaluates only candidates who request a rating** — so an
+  absent rating means non-participation, not a poor evaluation. Both records therefore carry
+  a WLAM entry: Banfield's with the rating, Lyke's with `rating: null` and a note stating what
+  unrated does and does not mean. This is now **mechanically enforced**: the `ratings` field
+  requires that if any candidate in a race carries an entry from a rater, every candidate
+  does, and an unrated entry without an explanatory note fails the build.
   Source: https://womenlawyers.org/about-wlam/candidate-rating/
-- **[OPEN] Dismissed signature challenge (Banfield).** The Board of Canvassers dismissed a
-  challenge to Banfield's nominating-petition signatures. Prong 1 (public record) passes.
-  Prong 2 (material to the office) is doubtful — the challenge was *dismissed*, so it found no
-  wrongdoing, and reporting it risks implying otherwise. Recommend omitting unless an
-  equivalent ballot-access proceeding exists for Lyke, in which case report both flatly with
-  outcomes. Source: https://thelivingstonpost.com/board-of-canvassers-dismisses-challenge-of-banfield-signatures-in-judicial-race/
+- **[DECIDED 2026-08-16] Dismissed signature challenge (Banfield): omitted.** The Board of
+  Canvassers dismissed a challenge to Banfield's nominating-petition signatures. It passes §4
+  prong 1 but fails prong 2 — the challenge was dismissed, so it establishes nothing about
+  fitness, and reporting it mainly transmits the accusation. Revisit only if an equivalent
+  ballot-access proceeding arises for another candidate in the race, in which case report all
+  of them flatly with outcomes.
 - **[DECIDED 2026-08-16] Lyke's prior partisan primary runs are included** in her `career` list
   (2020 Republican primary, 8th Congressional District; 2024 Republican primary, 50th state
   House District). Prior candidacies for public office are standard biographical fact and the
@@ -463,6 +462,13 @@ human decision, because including or excluding either one silently would be the 
   §14 completeness means the guide covers it too, even if unopposed.
 - **[TODO] Outreach has not started.** Both candidates are logged `contacted: false`. The
   validator warns on this and will *fail* the build if one is contacted and the other is not.
+  Standard invitation text is at `outreach/candidate-invitation.md` — published in the repo so
+  that "everyone got the same email" is checkable rather than asserted. Blocked on email
+  (below).
+- **[TODO] Email for `livingstonvoterguide.org`.** Domain registered 2026-08-16 at Namecheap.
+  Needs: inbound (Cloudflare Email Routing, free) plus authenticated outbound (SPF, DKIM,
+  DMARC) before any candidate outreach goes out. Unauthenticated mail from a brand-new civic
+  domain lands in spam or reads as phishing, which is a bad first contact with a campaign.
 
 ---
 
