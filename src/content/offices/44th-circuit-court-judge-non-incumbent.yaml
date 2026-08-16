@@ -1,0 +1,48 @@
+id: 44th-circuit-court-judge-non-incumbent
+title: Judge of the 44th Circuit Court (Non-Incumbent Position)
+jurisdiction: Livingston County
+level: county
+partisan: false
+seats_up: 1
+term_years: 6
+# Michigan circuit judge salary is set by the state and supplemented by the county.
+# Not yet verified against a primary source, so it stays null rather than approximated (§7).
+salary: null
+election_id: 2026-general
+
+description: >
+  The 44th Circuit Court is Livingston County's trial court of general jurisdiction — the
+  court where the most serious cases in the county are heard. By its own description, it
+  handles felony criminal cases, civil suits where the damages claimed are above $25,000,
+  all Family Court matters including divorce, custody and support, and all Juvenile Court
+  cases. Its family division also handles personal protection orders, paternity, adoptions
+  and name changes. Michigan circuit judges are elected to six-year terms on a nonpartisan
+  ballot, meaning no party label appears next to any candidate's name. The court has three
+  judges. This seat is open because Judge L. Suzanne Geddis, elected to it in 2018, has
+  reached the age limit that bars her from running again. Five candidates ran in the
+  August 4, 2026 primary — Andrea Banfield (11,769 votes), Kristina S. Lyke (11,233),
+  Mark Gatesman (11,212), Christopher Candela (7,772) and Mary Ellen Hayes (3,488) — and
+  the top two, Banfield and Lyke, advanced to the November 3, 2026 general election.
+
+voter_considerations:
+  - Each candidate's legal experience, and the kinds of cases they have handled — this
+    court's docket is mostly felony criminal, family, and juvenile matters.
+  - How each candidate describes their judicial philosophy and their approach to applying
+    the law.
+  - Any public record of professional conduct, licensing, or discipline.
+  - Experience relevant to the family and juvenile docket, which is a large share of this
+    court's caseload.
+  - That this is a nonpartisan office — judges are elected without a party label and are
+    expected to decide cases independently of party.
+
+sources:
+  - note: "44th Circuit Court — Livingston County's description of its own jurisdiction"
+    url: "https://milivcounty.gov/circuit/"
+  - note: "Michigan Manual, Chapter V: The Judicial Branch — circuit court jurisdiction, six-year nonpartisan terms"
+    url: "https://www.legislature.mi.gov/documents/2023-2024/michiganmanual/2023-MM-P0543-P0544.pdf"
+  - note: "WHMI 93.5 — official August 4, 2026 primary results, 44th Circuit Court"
+    url: "https://www.whmi.com/news/article/election-results-2026-august-4-primary"
+  - note: "Livingston County Clerk — candidate filings for the November 2026 election"
+    url: "https://milivcounty.gov/wp-content/uploads/Candidate-Filings-November-2026.pdf"
+
+last_updated: 2026-08-16

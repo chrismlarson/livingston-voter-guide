@@ -1,0 +1,78 @@
+id: kristina-lyke
+ballot_name: Kristina S. Lyke
+office_id: 44th-circuit-court-judge-non-incumbent
+# Nonpartisan office — no party label appears on the ballot (§2, §4).
+party: null
+incumbent: false
+
+# No candidate-provided photo yet. Nothing is used until the candidate supplies one
+# or a properly licensed image is available (§7, §13).
+photo: null
+
+residence: Fowlerville
+current_occupation: Attorney, Lyke Law, PLLC, East Lansing
+
+education:
+  - Bachelor's degree in political science, Eastern Michigan University, 2000
+  - Juris Doctor, Thomas M. Cooley Law School (now Western Michigan University Cooley
+    Law School), 2004, with a concentration in international law and litigation
+  - International certificate, University of San Diego School of Law
+  - 40 hours of mediation training
+
+career:
+  - Legislative assistant to state Representative Paul DeWeese
+  - Assistant to Michigan Lieutenant Governor Dick Posthumus
+  - Elected to the Pinckney village board at age 20, serving two consecutive terms
+  - Admitted to the State Bar of Michigan, 2006; admitted to federal court, 2007
+  - Adjunct professor of domestic relations, Thomas M. Cooley Law School
+  - Attorney, Lyke Law, PLLC, East Lansing — practice areas include family law, divorce,
+    criminal defense, and constitutional law
+  - Recipient, Ingham County Bar Association Young Lawyers Award, 2011
+  - Candidate in the 2020 Republican primary for the 8th Congressional District
+  - Candidate in the 2024 Republican primary for the 50th state House District
+
+# Awaiting a statement in the candidate's own words. This guide does not compose or
+# paraphrase a statement on a candidate's behalf (§2.3, §8). Both candidates in this race
+# are being invited to submit one on identical terms.
+candidate_statement: null
+statement_source: null
+
+website: "https://www.livingstonlikeslyke.com/"
+social:
+  - { platform: Facebook, url: "https://www.facebook.com/p/Kristina-Lyke-for-Judge-61557364295642/" }
+
+# The campaign website lists an endorsements section; no specific endorsers have been
+# verified from a primary source yet. Nothing is listed until it is sourced (§7).
+endorsements: []
+
+campaign_finance:
+  total_raised: null
+  total_spent: null
+  self_funded: null
+  report_date: null
+  source_url: null
+
+# Nothing yet meets all three prongs of the §4 inclusion test.
+public_record: []
+
+questionnaire:
+  responded: false
+  source_url: null
+  responses: []
+
+participation:
+  contacted: false
+  contacted_date: null
+  responded: false
+
+sources:
+  - note: "Campaign website"
+    url: "https://www.livingstonlikeslyke.com/about"
+  - note: "Law firm biography — education, bar admission, career history (self-description)"
+    url: "https://www.lykelaw.com/about-kristina"
+  - note: "The Livingston Post — candidacy announcement, background and prior candidacies"
+    url: "https://thelivingstonpost.com/lyke-collecting-signatures-for-judicial-primary-run/"
+  - note: "WHMI 93.5 — official August 4, 2026 primary results"
+    url: "https://www.whmi.com/news/article/election-results-2026-august-4-primary"
+
+last_updated: 2026-08-16

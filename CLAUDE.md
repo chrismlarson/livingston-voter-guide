@@ -292,11 +292,12 @@ Optimized for speed (which is also SEO), low attack surface, auditability, and l
   at this scale, and consistent with the existing Cloudflare footprint). *Alternative:*
   self-host on the existing DigitalOcean droplet if control is preferred — but the CDN host is a
   better fit for a spiky-traffic civic site and removes single-droplet uptime risk.
-- **Domain: `livcovoterguide.org`** — a dedicated civic domain, not a subpath of a personal site.
-  A `.org` reads as civic/nonprofit and helps both trust and the perception of independence
-  (hosting under a personal domain ties the guide too tightly to one person). "LivCo" is the
-  local shorthand, so the name reads as insider-plain to residents. **Not yet registered as of
-  2026-08-16** — confirmed unregistered via PIR RDAP and DNS; register before Phase 0 completes.
+- **Domain: `livingstonvoterguide.org`** — a dedicated civic domain, not a subpath of a personal
+  site. A `.org` reads as civic/nonprofit and helps both trust and the perception of independence
+  (hosting under a personal domain ties the guide too tightly to one person). The full word
+  "Livingston" is legible to a stranger seeing it in a search result or an AI answer citation,
+  which the "LivCo" shorthand is not. Set in `astro.config.mjs` (`site`) — the single place the
+  canonical origin is defined.
 - **Repo visibility: PUBLIC.** `github.com/chrismlarson/livingston-voter-guide`. A public repo
   makes the entire edit history and the full dataset auditable by anyone — an unusually strong
   neutrality/trust signal, and it enables outside contributions and corrections. Accepted
@@ -412,9 +413,9 @@ consult, before launch. Do not treat the notes below as settled legal advice.**
 
 Keep this section updated as the project evolves — it is part of the shared memory.
 
-- **[DECIDED 2026-08-16]** Domain name: **`livcovoterguide.org`** (§10). Confirmed unregistered
-  at the time of the decision; still needs to be registered. Considered and set aside:
-  `livingstoncountyvoterguide.org` (also free — contains the exact search phrase, but longer).
+- **[DECIDED 2026-08-16]** Domain name: **`livingstonvoterguide.org`** (§10). Considered and set
+  aside: `livcovoterguide.org` (shorter, but "LivCo" is opaque to non-locals) and
+  `livingstoncountyvoterguide.org` (exact search phrase, but long).
 - **[DECIDED 2026-08-16]** Repo is **public**: `github.com/chrismlarson/livingston-voter-guide`.
   The edit history is the neutrality evidence, so auditability beat keeping drafts private.
 - **[DECIDED 2026-08-16]** Hosting: **Cloudflare Pages**, not the existing chrislarson.com
@@ -428,6 +429,40 @@ Keep this section updated as the project evolves — it is part of the shared me
   neutral content and a built-in outreach reason. Decide in Phase 2.
 - **[OPEN]** Whether to cover races beyond Livingston County later, or stay deliberately local
   (local depth is the differentiator; resist scope creep until the local product is excellent).
+
+### Pending editorial calls — 44th Circuit race (opened 2026-08-16)
+
+These are §4 judgment calls. Each was deliberately left OUT of the published record pending a
+human decision, because including or excluding either one silently would be the wrong default.
+
+- **[OPEN] WLAM judicial rating.** The Women Lawyers Association of Michigan rated Andrea
+  Banfield "Outstanding" (July 2026). Kristina Lyke does not appear anywhere on WLAM's ratings
+  list, for this or any prior cycle. Publishing "Outstanding" beside one candidate and nothing
+  beside the other is textbook differential emphasis — but suppressing a sourced third-party
+  rating is not neutral either. The blocker is that we do not know *why* Lyke is unlisted:
+  WLAM ratings may require the candidate to participate, in which case "unrated" means
+  "declined or did not submit," not "rated poorly." **Resolve by checking WLAM's rating
+  methodology, then either (a) list both with an explanatory note about what unrated means, or
+  (b) omit ratings entirely for this race.** Do not publish it one-sided.
+  Source: https://womenlawyers.org/about-wlam/candidate-rating/
+- **[OPEN] Dismissed signature challenge (Banfield).** The Board of Canvassers dismissed a
+  challenge to Banfield's nominating-petition signatures. Prong 1 (public record) passes.
+  Prong 2 (material to the office) is doubtful — the challenge was *dismissed*, so it found no
+  wrongdoing, and reporting it risks implying otherwise. Recommend omitting unless an
+  equivalent ballot-access proceeding exists for Lyke, in which case report both flatly with
+  outcomes. Source: https://thelivingstonpost.com/board-of-canvassers-dismisses-challenge-of-banfield-signatures-in-judicial-race/
+- **[DECIDED 2026-08-16] Lyke's prior partisan primary runs are included** in her `career` list
+  (2020 Republican primary, 8th Congressional District; 2024 Republican primary, 50th state
+  House District). Prior candidacies for public office are standard biographical fact and the
+  same would be listed for any candidate who had them. This makes the two records asymmetric,
+  but §4 forbids manufacturing parity — the records differ because the careers differ. Flagged
+  here because it puts a party word in a nonpartisan race; revisit if it reads as a thumb on
+  the scale.
+- **[TODO] The 44th Circuit incumbent seat is a separate race** on the same November ballot
+  (Judge of Circuit Court, 44th Circuit, incumbent position, 6-year term) and is not yet built.
+  §14 completeness means the guide covers it too, even if unopposed.
+- **[TODO] Outreach has not started.** Both candidates are logged `contacted: false`. The
+  validator warns on this and will *fail* the build if one is contacted and the other is not.
 
 ---
 

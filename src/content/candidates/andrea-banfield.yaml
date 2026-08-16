@@ -1,0 +1,82 @@
+id: andrea-banfield
+ballot_name: Andrea Banfield
+office_id: 44th-circuit-court-judge-non-incumbent
+# Nonpartisan office — no party label appears on the ballot (§2, §4).
+party: null
+incumbent: false
+
+# No candidate-provided photo yet. Nothing is used until the candidate supplies one
+# or a properly licensed image is available (§7, §13).
+photo: null
+
+residence: Brighton
+current_occupation: Attorney; co-founder, Banfield Couling Law & Mediation, PLLC
+
+education:
+  - Bachelor of Science in paralegal studies, Eastern Michigan University
+  - Juris Doctor, Detroit College of Law at Michigan State University
+
+career:
+  - Legal assistant at a Howell law office while attending college
+  - Intern, Livingston County Prosecutor's Office, during law school
+  - Founded a law practice in Howell after law school
+  - Co-founder, Banfield Couling Law & Mediation, PLLC, 2020 — practice areas include
+    divorce and family law, custody and support, mediation and collaborative law, estate
+    planning, probate litigation, and guardianship
+  - Elected member, State Bar of Michigan Family Law Council
+  - State Bar of Michigan Representative Assembly, representing Livingston County
+  - Co-chair, State Bar of Michigan Alternative Dispute Resolution committee
+  - Livingston County Friend of the Court Advisory Board
+  - Elected member, Brighton Downtown Development Authority
+  - Board member, Livingston County Child Abuse Prevention Council, and the Women's
+    Resource Center
+
+# Awaiting a statement in the candidate's own words. This guide does not compose or
+# paraphrase a statement on a candidate's behalf (§2.3, §8). Both candidates in this race
+# are being invited to submit one on identical terms.
+candidate_statement: null
+statement_source: null
+
+website: "https://banfieldforjudge.com/"
+social:
+  - { platform: Facebook, url: "https://www.facebook.com/andreabanfieldforjudge/" }
+  - { platform: Instagram, url: "https://www.instagram.com/banfieldforjudge/" }
+  - { platform: LinkedIn, url: "https://www.linkedin.com/in/andrea-banfield-1b20191a4/" }
+
+# The campaign website lists an endorsements page; no specific endorsers have been
+# verified from a primary source yet. Nothing is listed until it is sourced (§7).
+endorsements: []
+
+campaign_finance:
+  total_raised: null
+  total_spent: null
+  self_funded: null
+  report_date: null
+  source_url: null
+
+# Nothing yet meets all three prongs of the §4 inclusion test. See the project notes on
+# the dismissed nominating-petition signature challenge — a pending editorial decision,
+# not an omission by default.
+public_record: []
+
+questionnaire:
+  responded: false
+  source_url: null
+  responses: []
+
+participation:
+  contacted: false
+  contacted_date: null
+  responded: false
+
+sources:
+  - note: "Campaign website"
+    url: "https://banfieldforjudge.com/"
+  - note: "Law firm biography — education, practice areas, professional roles (self-description)"
+    url: "https://coulinglaw.com/about-andrea"
+  - note: "The Livingston Post — candidacy announcement, background and education"
+    url: "https://thelivingstonpost.com/brighton-attorney-running-for-open-circuit-court-seat/"
+  - note: "WHMI 93.5 — official August 4, 2026 primary results"
+    url: "https://www.whmi.com/news/article/election-results-2026-august-4-primary"
+
+last_updated: 2026-08-16

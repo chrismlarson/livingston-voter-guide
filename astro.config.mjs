@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // The one place the canonical origin is defined. Everything else reads
   // `Astro.site`. See CLAUDE.md §10 / §16 for the domain decision.
-  site: 'https://livcovoterguide.org',
+  site: 'https://livingstonvoterguide.org',
 
   // Sitemap + canonical URLs are load-bearing for §11 (crawlability).
   integrations: [sitemap()],

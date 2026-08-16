@@ -16,9 +16,17 @@ import { z } from 'zod';
 export const STATEMENT_MIN_WORDS = 120;
 export const STATEMENT_MAX_WORDS = 220;
 
-const isoDate = z
-  .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Dates must be ISO format YYYY-MM-DD (§7: date-stamp everything)');
+/**
+ * An ISO date. YAML 1.1 parses an unquoted `2026-08-16` into a Date, while a quoted
+ * one stays a string — and the two loaders in this project disagree about which.
+ * Normalize both to `YYYY-MM-DD` so content editors never have to think about quoting.
+ */
+const isoDate = z.preprocess(
+  (v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v),
+  z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Dates must be ISO format YYYY-MM-DD (§7: date-stamp everything)'),
+);
 
 const url = z.string().url('Must be a full URL including https://');
 
