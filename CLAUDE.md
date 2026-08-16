@@ -470,19 +470,25 @@ human decision, because including or excluding either one silently would be the 
   - `livingstonvoterguide.org` — NS at Namecheap; Namecheap's **default free email
     forwarding** MX records (`eforward1–5.registrar-servers.com`) and its SPF
     (`include:spf.efwd.registrar-servers.com`) are already live. No DMARC.
-  - `classtrova.com` — NS at Cloudflare, **Cloudflare Email Routing already in use**
-    (`route1–3.mx.cloudflare.net`, SPF `include:_spf.mx.cloudflare.net`). No DMARC.
-    This is the existing precedent — the same setup works here.
+  - `classtrova.com` — **the working reference implementation, inbound and outbound.**
+    NS at Cloudflare. Inbound: Cloudflare Email Routing (`route1–3.mx.cloudflare.net`,
+    SPF `include:_spf.mx.cloudflare.net`). Outbound: **Resend**, domain-verified —
+    `resend._domainkey.classtrova.com` carries a live DKIM key, and `send.classtrova.com`
+    carries SPF `include:amazonses.com` plus MX `feedback-smtp.us-east-1.amazonses.com`
+    for bounce handling (Resend runs on Amazon SES). No DMARC.
   - `chrislarson.com` — NS at Namecheap, no MX at all, no DMARC. No mail on that domain.
+  **Replicate the classtrova pattern**: Cloudflare Email Routing for inbound, Resend for
+  outbound, on an existing account with a proven verification flow. Note that the app sends
+  via the Resend **API** (`app/services/email_service.py`), not SMTP — the `SMTP_*` keys in
+  `classtrova/backend/.env` are dead leftovers pointing at a `localhost:1025` dev stub, and
+  are not evidence of anything. For hand-written candidate outreach, Resend also issues SMTP
+  credentials, which can back Gmail's "Send mail as" so replies come to a normal inbox.
   **Sequencing gotcha:** a Cloudflare Pages custom domain on an apex needs the zone on
   Cloudflare DNS, and moving the nameservers drops Namecheap's forwarding MX. Stand up
   Cloudflare Email Routing in the same change, or inbound mail breaks silently.
-  **Neither Cloudflare Email Routing nor Namecheap forwarding can send** — both are
-  receive-only, and no outbound provider has ever been configured on any of these domains
-  (classtrova's SMTP config is a local dev stub on `localhost:1025`). Outbound needs an SMTP
-  relay plus SPF/DKIM/DMARC before any candidate outreach goes out. Unauthenticated mail from
-  a brand-new civic domain lands in spam or reads as phishing — a bad first contact with a
-  campaign, and one that is hard to undo.
+  **Add DMARC this time** (`p=none`, then tighten). No domain in this account has it.
+  Unauthenticated mail from a brand-new civic domain lands in spam or reads as phishing —
+  a bad first contact with a campaign, and one that is hard to undo.
 
 ---
 
