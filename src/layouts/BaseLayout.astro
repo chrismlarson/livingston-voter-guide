@@ -1,0 +1,162 @@
+---
+import { SITE_NAME, SITE_DESCRIPTION } from '../consts.ts';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** ISO date shown to readers and to answer engines (CLAUDE.md §11: freshness). */
+  lastUpdated?: string;
+  /** schema.org JSON-LD for this page (§11). */
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description = SITE_DESCRIPTION, lastUpdated, jsonLd } = Astro.props;
+
+const pageTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <style is:global>
+      :root {
+        --ink: #1a1a1a;
+        --ink-muted: #55595f;
+        --rule: #d8dadd;
+        --bg: #fdfdfc;
+        --accent: #1f4e79; /* deliberately not red or blue-of-a-party */
+        --measure: 42rem;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #e8e8e6;
+          --ink-muted: #a4a8ad;
+          --rule: #3a3d42;
+          --bg: #16181a;
+          --accent: #8ab4dd;
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 1.0625rem/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      .wrap {
+        max-width: var(--measure);
+        margin-inline: auto;
+        padding: 1.5rem 1.25rem 4rem;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        text-wrap: balance;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-block: 0.5rem 0.75rem;
+      }
+
+      header.site,
+      footer.site {
+        border-block-end: 1px solid var(--rule);
+      }
+
+      footer.site {
+        border-block: 1px solid var(--rule);
+        border-block-end: 0;
+        margin-block-start: 3rem;
+        padding-block-start: 1.5rem;
+        color: var(--ink-muted);
+        font-size: 0.9375rem;
+      }
+
+      header.site nav {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        align-items: baseline;
+      }
+
+      header.site .brand {
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--ink);
+      }
+
+      .meta {
+        color: var(--ink-muted);
+        font-size: 0.9375rem;
+      }
+
+      .lede {
+        font-size: 1.125rem;
+        color: var(--ink-muted);
+      }
+
+      :where(a):focus-visible,
+      :where(button):focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site">
+      <div class="wrap" style="padding-block-end:1rem">
+        <nav aria-label="Primary">
+          <a class="brand" href="/">{SITE_NAME}</a>
+          <a href="/">Races</a>
+          <a href="/about/">About &amp; methodology</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site">
+      <div class="wrap" style="padding-block-end:2rem">
+        {lastUpdated && <p class="meta">Page last updated <time datetime={lastUpdated}>{lastUpdated}</time>.</p>}
+        <p class="meta">
+          This guide does not endorse candidates and is not affiliated with any campaign,
+          party, or committee. Every candidate for every covered office is included by the
+          same standard. <a href="/about/">How this is built and how to request a correction.</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

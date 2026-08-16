@@ -1,0 +1,46 @@
+id: candidate-a
+ballot_name: Alex A. Example
+office_id: example-office
+party: null
+incumbent: false
+photo: null
+residence: Howell
+current_occupation: Fixture occupation
+education:
+  - Example University, B.A.
+career:
+  - Example role, 2010–2020
+candidate_statement: >
+  This is fixture text standing in for a candidate statement, written to land inside the
+  word budget the guide applies identically to every candidate in a race. It exists only
+  so the validator has something of a realistic length to measure, and so the parity check
+  between two candidates in the same race can be exercised by the test suite. It carries no
+  meaning and describes no real person, no real office, and no real position on any issue.
+  The words here are filler chosen to reach the lower bound of the configured budget without
+  saying anything at all, because the point of the fixture is the shape of the record rather
+  than its content. Real statements come from the candidate's own campaign materials or from
+  their response to this guide's questionnaire, and they are always attributed to a source
+  that a reader can open and check for themselves before drawing any conclusion whatsoever.
+statement_source: https://example.org/candidate-a
+website: https://example.org/candidate-a
+social: []
+endorsements:
+  - { endorser: "Example Association", source_url: "https://example.org/endorsement", date: "2026-07-01" }
+campaign_finance:
+  total_raised: null
+  total_spent: null
+  self_funded: null
+  report_date: null
+  source_url: null
+public_record: []
+questionnaire:
+  responded: false
+  source_url: null
+  responses: []
+participation:
+  contacted: true
+  contacted_date: "2026-07-15"
+  responded: true
+sources:
+  - { note: "Fixture source", url: "https://example.org/candidate-a" }
+last_updated: 2026-08-16

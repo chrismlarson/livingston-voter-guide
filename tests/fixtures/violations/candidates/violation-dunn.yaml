@@ -1,0 +1,45 @@
+# Planted violations: outreach logged here but not for the opponent (asymmetric);
+# statement sits at full budget while the opponent's is a single line.
+id: violation-dunn
+ballot_name: Drew Dunn
+office_id: violation-office
+party: null
+incumbent: true
+photo: null
+residence: Hartland
+current_occupation: Fixture occupation
+education:
+  - Example University, J.D.
+career:
+  - Example role, 2005–2025
+candidate_statement: >
+  This fixture statement is written at the full length the guide permits, precisely so that
+  it stands in sharp contrast to the opponent's single-line entry in the same fictional race.
+  That contrast is the point: differential emphasis is the main lever of bias, and a guide
+  that gives one candidate ten times the words gives that candidate ten times the presence on
+  the page regardless of what the words actually say. The validator is expected to reject this
+  pair on the word-budget parity rule before it can ever reach a published page. Nothing here
+  describes a real person, a real office, or a real position on any issue whatsoever, and the
+  filler exists only to reach a length that trips the check. Real statements come from the
+  candidate's own campaign materials or from their response to this guide's questionnaire.
+statement_source: https://example.org/dunn
+website: null
+social: []
+endorsements: []
+campaign_finance:
+  total_raised: null
+  total_spent: null
+  self_funded: null
+  report_date: null
+  source_url: null
+public_record: []
+questionnaire:
+  responded: false
+  source_url: null
+  responses: []
+participation:
+  contacted: true
+  contacted_date: "2026-07-15"
+  responded: true
+sources: []
+last_updated: 2026-08-16

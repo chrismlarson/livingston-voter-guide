@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_NAME, CURRENT_ELECTION } from '../consts.ts';
+
+const offices = (await getCollection('offices')).filter(
+  (o) => o.data.election_id === CURRENT_ELECTION.id,
+);
+
+const LEVEL_LABELS: Record<string, string> = {
+  federal: 'Federal',
+  state: 'State',
+  county: 'County',
+  township: 'Township',
+  school: 'School',
+  other: 'Ballot proposals and other',
+};
+
+const byLevel = Object.keys(LEVEL_LABELS)
+  .map((level) => ({
+    level,
+    label: LEVEL_LABELS[level],
+    offices: offices.filter((o) => o.data.level === level).sort((a, b) =>
+      a.data.title.localeCompare(b.data.title),
+    ),
+  }))
+  .filter((group) => group.offices.length > 0);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: CURRENT_ELECTION.name,
+  startDate: CURRENT_ELECTION.date,
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: 'Livingston County, Michigan',
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'MI',
+      addressCountry: 'US',
+    },
+  },
+};
+---
+
+<BaseLayout title={SITE_NAME} jsonLd={jsonLd}>
+  <h1>Who is on the ballot in Livingston County?</h1>
+
+  <p class="lede">
+    Every candidate for every office on the {CURRENT_ELECTION.name} ballot in Livingston
+    County, Michigan — partisan and nonpartisan — with sources for every claim, and a
+    plain-language explanation of what each office actually does.
+  </p>
+
+  {
+    byLevel.length === 0 ? (
+      <p>
+        Race pages for the {CURRENT_ELECTION.name} are being built and have not been
+        published yet.
+      </p>
+    ) : (
+      byLevel.map((group) => (
+        <section>
+          <h2>{group.label}</h2>
+          <ul>
+            {group.offices.map((office) => (
+              <li>
+                <a href={`/races/${office.data.id}/`}>{office.data.title}</a>
+                {!office.data.partisan && <span class="meta"> — nonpartisan</span>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    )
+  }
+</BaseLayout>

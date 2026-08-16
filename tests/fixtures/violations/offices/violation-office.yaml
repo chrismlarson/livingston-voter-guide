@@ -1,0 +1,23 @@
+# Test fixture — deliberately violates the neutrality doctrine so the test suite can
+# prove the validator BLOCKS it. Never copy this shape into src/content.
+#
+# Planted violations:
+#   - voter_considerations names a specific candidate (§4)
+#   - the race is nonpartisan but a candidate record carries a party (§2, §4)
+id: violation-office
+title: Violation Test Office
+jurisdiction: Livingston County
+level: county
+partisan: false
+seats_up: 1
+term_years: 4
+salary: null
+election_id: 2026-general
+description: >
+  A fictional office used only to exercise the validator's failure paths.
+voter_considerations:
+  - Whether Carter has the right experience for this role.
+  - Approach to the office as each candidate describes it.
+sources:
+  - { note: "Fixture source", url: "https://example.org/violation-office" }
+last_updated: 2026-08-16

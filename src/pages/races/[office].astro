@@ -1,0 +1,215 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+/**
+ * The race page. This template is the presentation-layer half of CLAUDE.md §2.1:
+ * every candidate is rendered through the SAME loop, with the same fields in the
+ * same order, and empty fields render as identical neutral lines. There is
+ * deliberately no way to give one candidate a richer treatment than another
+ * without changing this file for everyone.
+ *
+ * Candidate order is alphabetical by ballot name — a fixed, non-editorial rule.
+ * Do not sort by incumbency, fundraising, or anything else that implies ranking.
+ */
+
+export async function getStaticPaths() {
+  const offices = await getCollection('offices');
+  const candidates = await getCollection('candidates');
+
+  return offices.map((office) => ({
+    params: { office: office.data.id },
+    props: {
+      office: office.data,
+      candidates: candidates
+        .filter((c) => c.data.office_id === office.data.id)
+        .map((c) => c.data)
+        .sort((a, b) => a.ballot_name.localeCompare(b.ballot_name)),
+    },
+  }));
+}
+
+const { office, candidates } = Astro.props;
+
+/** Neutral, identical placeholder for every empty field (§4). */
+const NONE_FOUND = 'None found';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: `What does the ${office.title} do?`,
+          acceptedAnswer: { '@type': 'Answer', text: office.description },
+        },
+        {
+          '@type': 'Question',
+          name: `Who is running for ${office.title} in ${office.jurisdiction}?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              candidates.length > 0
+                ? candidates.map((c) => c.ballot_name).join(', ') + '.'
+                : 'Candidate records for this race have not been published yet.',
+          },
+        },
+      ],
+    },
+    ...candidates.map((c) => ({
+      '@type': 'Person',
+      name: c.ballot_name,
+      homeLocation: { '@type': 'Place', name: c.residence },
+      ...(c.website ? { url: c.website } : {}),
+      ...(c.current_occupation ? { jobTitle: c.current_occupation } : {}),
+    })),
+  ],
+};
+---
+
+<BaseLayout
+  title={office.title}
+  description={`Every candidate for ${office.title} in ${office.jurisdiction}, with sources — and a plain-language explanation of what the office does.`}
+  lastUpdated={office.last_updated}
+  jsonLd={jsonLd}
+>
+  <h1>{office.title}</h1>
+  <p class="meta">
+    {office.jurisdiction} · {office.partisan ? 'Partisan race' : 'Nonpartisan race'} ·{' '}
+    {office.seats_up === 1 ? '1 seat' : `${office.seats_up} seats`} ·{' '}
+    {office.term_years}-year term
+  </p>
+
+  <h2 id="what-it-does">What does the {office.title} do?</h2>
+  <p>{office.description}</p>
+
+  <h2 id="candidates">
+    Who is running for {office.title}?
+  </h2>
+
+  {
+    candidates.length === 0 ? (
+      <p>Candidate records for this race have not been published yet.</p>
+    ) : (
+      candidates.map((c) => (
+        <article>
+          <h3>
+            {c.ballot_name}
+            {c.party && <span class="meta"> ({c.party})</span>}
+            {c.incumbent && <span class="meta"> · Incumbent</span>}
+          </h3>
+
+          <dl>
+            <dt>Residence</dt>
+            <dd>{c.residence}</dd>
+
+            <dt>Current occupation</dt>
+            <dd>{c.current_occupation ?? 'Not stated'}</dd>
+
+            <dt>Education</dt>
+            <dd>{c.education.length ? c.education.join('; ') : NONE_FOUND}</dd>
+
+            <dt>Career</dt>
+            <dd>{c.career.length ? c.career.join('; ') : NONE_FOUND}</dd>
+
+            <dt>Campaign website</dt>
+            <dd>
+              {c.website ? <a href={c.website}>{c.website}</a> : 'No campaign website found'}
+            </dd>
+
+            <dt>Endorsements</dt>
+            <dd>
+              {c.endorsements.length ? (
+                <ul>
+                  {c.endorsements.map((e) => (
+                    <li>
+                      {e.endorser} (<a href={e.source_url}>source</a>, {e.date})
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                NONE_FOUND
+              )}
+            </dd>
+
+            <dt>Campaign finance</dt>
+            <dd>
+              {c.campaign_finance.source_url ? (
+                <>
+                  Raised {c.campaign_finance.total_raised ?? 'not reported'} · Spent{' '}
+                  {c.campaign_finance.total_spent ?? 'not reported'} (as of{' '}
+                  {c.campaign_finance.report_date ?? 'unknown date'}) —{' '}
+                  <a href={c.campaign_finance.source_url}>filing</a>
+                </>
+              ) : (
+                'No filing found'
+              )}
+            </dd>
+
+            {c.public_record.length > 0 && (
+              <>
+                <dt>Public record</dt>
+                <dd>
+                  <ul>
+                    {c.public_record.map((r) => (
+                      <li>
+                        {r.fact} (<a href={r.source_url}>source</a>, {r.date})
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </>
+            )}
+          </dl>
+
+          <h4>In their own words</h4>
+          {
+            c.candidate_statement ? (
+              <>
+                <blockquote>{c.candidate_statement}</blockquote>
+                <p class="meta">
+                  Source: <a href={c.statement_source!}>candidate's own materials</a>
+                </p>
+              </>
+            ) : (
+              <p>
+                {c.participation.contacted
+                  ? 'Did not respond to this guide’s request for a statement.'
+                  : 'No candidate statement on file.'}
+              </p>
+            )
+          }
+
+          <p class="meta">
+            Outreach:{' '}
+            {c.participation.contacted
+              ? `Contacted ${c.participation.contacted_date}. ${
+                  c.participation.responded ? 'Responded.' : 'No response as of publication.'
+                }`
+              : 'Not yet contacted.'}{' '}
+            · Record last updated {c.last_updated}.
+          </p>
+        </article>
+      ))
+    )
+  }
+
+  <h2 id="considerations">Questions a voter might consider</h2>
+  <p class="meta">
+    These are about the office, not about any candidate. This guide does not answer them.
+  </p>
+  <ul>
+    {office.voter_considerations.map((q) => <li>{q}</li>)}
+  </ul>
+
+  <h2 id="sources">Sources</h2>
+  <ul>
+    {office.sources.map((s) => (
+      <li>
+        <a href={s.url}>{s.note}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

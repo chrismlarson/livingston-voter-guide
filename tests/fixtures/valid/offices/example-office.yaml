@@ -1,0 +1,19 @@
+# Test fixture — fictional office and candidates used to prove the validator
+# accepts a well-formed, symmetric race. Not published content.
+id: example-office
+title: Example County Office
+jurisdiction: Livingston County
+level: county
+partisan: false
+seats_up: 1
+term_years: 6
+salary: null
+election_id: 2026-general
+description: >
+  A fictional office used only to exercise the content schema in tests.
+voter_considerations:
+  - Relevant experience for the role.
+  - Approach to the office as each candidate describes it.
+sources:
+  - { note: "Fixture source", url: "https://example.org/office" }
+last_updated: 2026-08-16

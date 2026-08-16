@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { MAINTAINER } from '../consts.ts';
+
+/**
+ * CLAUDE.md §9: the About page is a trust instrument and an SEO asset at once.
+ * It must state who runs this, disclose the maintainer's affiliation plainly,
+ * describe the method, and give a working corrections route.
+ *
+ * TODO(chris): fill the MAINTAINER constants and re-read this page end to end
+ * before the site is public. Do not launch with placeholder text.
+ */
+
+const lastUpdated = '2026-08-16';
+---
+
+<BaseLayout
+  title="About and methodology"
+  description="Who builds this guide, how candidates are covered, how sources are handled, and how to request a correction."
+  lastUpdated={lastUpdated}
+>
+  <h1>About this guide</h1>
+
+  <p class="lede">
+    This guide exists because an ordinary voter looking up a school board or judicial race
+    in Livingston County finds almost nothing. It covers every candidate for every office
+    on the ballot, by the same standard, with a source for every claim.
+  </p>
+
+  <h2>Who builds this</h2>
+  <p>
+    This guide is built and maintained by {MAINTAINER.name}.
+  </p>
+  <p>
+    <strong>Disclosure:</strong> {MAINTAINER.name} is a {MAINTAINER.role}. That is stated
+    here plainly rather than buried, because you should be able to judge this guide knowing
+    who made it. The response to that disclosure is not a promise to have no opinions — it
+    is a method designed so that opinions cannot get into the content, and so that you can
+    check whether they did.
+  </p>
+
+  <h2>How every candidate is treated the same</h2>
+  <ul>
+    <li>
+      <strong>Identical structure.</strong> Every candidate in a race gets the same fields
+      in the same order, and the same word budget. Equal structure removes the main lever
+      of bias, which is not lying — it is emphasis.
+    </li>
+    <li>
+      <strong>Their words first.</strong> What a candidate says about themselves comes from
+      their own campaign materials and is attributed as their description, not restated as
+      established fact.
+    </li>
+    <li>
+      <strong>No verdicts.</strong> This guide never calls a candidate best, strongest, most
+      qualified, or concerning. It never scores, rates, ranks, or assigns anyone a political
+      lean. It presents; you decide.
+    </li>
+    <li>
+      <strong>Missing information is stated, not implied.</strong> "No campaign website
+      found" and "Did not respond" appear in the same words for every candidate, including
+      ones the maintainer personally supports. A short entry reflects what is publicly
+      available, not a judgment about the candidate.
+    </li>
+    <li>
+      <strong>Everyone is invited.</strong> Every candidate in every covered race is
+      contacted with the same offer to submit or verify their information and photo.
+      Who was contacted, and who replied, is recorded on each race page.
+    </li>
+  </ul>
+
+  <h2>How sources work</h2>
+  <p>
+    Every substantive claim carries a link to a primary source, in this order of preference:
+    the candidate's own campaign materials, official campaign-finance filings, government
+    and court records, then on-the-record reporting. Facts are date-stamped, because a job
+    title, a donation total, or an endorsement can go stale.
+  </p>
+
+  <h2>How unflattering facts are handled</h2>
+  <p>
+    Neutrality here means applying one standard to everyone, not avoiding anything
+    uncomfortable. A fact about a candidate is included only if it passes all three tests:
+    it comes from a verifiable public record; it bears on the office being sought rather
+    than the candidate's private life; and the equivalent fact would be included for a
+    candidate of any party. Facts that pass are stated flatly, with the source and without
+    adjectives. Rumor, inference, and anything drawn from a candidate's family or personal
+    life are not included at all.
+  </p>
+
+  <h2>What this guide will not do</h2>
+  <p>
+    No endorsements. No recommendations. No "vote for" language. No candidate scores or
+    ideology ratings. No voter targeting or campaign operations of any kind. This guide is
+    not affiliated with, and does not coordinate with, any campaign, party, or committee.
+  </p>
+
+  <h2>Corrections</h2>
+  <p>
+    If something here is wrong, incomplete, or out of date — and especially if you are a
+    candidate whose information is misstated — write to
+    <a href={`mailto:${MAINTAINER.email}`}>{MAINTAINER.email}</a>. Corrections are made
+    promptly. Any candidate may submit or verify their own statement and photo at any time.
+  </p>
+  <p>
+    The full content of this guide, and every change ever made to it, is public and
+    auditable in its source repository. You do not have to take the neutrality claim on
+    faith; you can read the diffs.
+  </p>
+</BaseLayout>

@@ -1,0 +1,35 @@
+# Planted violations: party set on a nonpartisan race; statement far under the word
+# budget while the opponent's is at full length; outreach not logged.
+id: violation-carter
+ballot_name: Casey Carter
+office_id: violation-office
+party: Republican
+incumbent: false
+photo: null
+residence: Howell
+current_occupation: Fixture occupation
+education: []
+career: []
+candidate_statement: >
+  A deliberately short statement.
+statement_source: https://example.org/carter
+website: null
+social: []
+endorsements: []
+campaign_finance:
+  total_raised: 25000
+  total_spent: null
+  self_funded: null
+  report_date: null
+  source_url: null
+public_record: []
+questionnaire:
+  responded: false
+  source_url: null
+  responses: []
+participation:
+  contacted: false
+  contacted_date: null
+  responded: false
+sources: []
+last_updated: 2026-08-16
